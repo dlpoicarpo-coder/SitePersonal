@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daniel Policarpo · Personal Trainer</title>
+<meta name="description" content="Treino com base científica: periodização, ajustes de carga e monitoramento diário. CREF 055469-G/MG · Manhuaçu/MG.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#080F1C; --ink2:#0B1424; --panel:#101E33; --panel2:#142640;
+    --soft:rgba(255,255,255,.045); --soft2:rgba(255,255,255,.07);
+    --line:rgba(232,178,90,.22); --line-soft:rgba(255,255,255,.10);
+    --gold:#E8B25A; --gold-deep:#C8862F; --white:#F4F7FB;
+    --warm:#C6B79C; --cool:#90A1B6;
+    --r:20px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--ink); color:var(--white);
+    font-family:"Poppins",system-ui,sans-serif; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:480px;margin:0 auto;position:relative;
+    background:
+      radial-gradient(120% 60% at 90% -5%, rgba(232,178,90,.14), transparent 60%),
+      radial-gradient(90% 50% at -10% 20%, rgba(20,60,110,.30), transparent 60%),
+      linear-gradient(180deg,#0B1424 0%, #080F1C 40%, #070D17 100%);
+    min-height:100vh; overflow:hidden; padding:0 22px 40px;
+    box-shadow:0 0 80px rgba(0,0,0,.5);
+  }
+  .topgold{height:5px;margin:0 -22px;background:linear-gradient(90deg,var(--gold),var(--gold-deep));}
+
+  /* brand */
+  .brand{display:flex;align-items:center;gap:12px;padding:22px 0 0;}
+  .mono{width:46px;height:46px;border-radius:13px;border:1.5px solid var(--line);
+    background:rgba(232,178,90,.08);display:flex;align-items:center;justify-content:center;
+    font-weight:800;color:var(--gold);font-size:18px;letter-spacing:.5px;}
+  .brand b{display:block;font-weight:600;font-size:15px;letter-spacing:.2px}
+  .brand span{display:block;font-size:12px;color:var(--warm);letter-spacing:.3px}
+
+  /* hero */
+  .hero{padding:42px 0 8px}
+  .eyebrow{font-size:11.5px;letter-spacing:3.5px;color:var(--gold);font-weight:600;text-transform:uppercase}
+  h1{font-family:"Fraunces",serif;font-weight:500;font-size:40px;line-height:1.08;
+    margin:16px 0 0;letter-spacing:-.5px}
+  h1 em{font-style:italic;color:var(--gold)}
+  .lead{color:var(--warm);font-size:15.5px;margin:16px 0 0;max-width:40ch}
+  .cta-row{display:flex;flex-direction:column;gap:11px;margin-top:26px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:9px;
+    text-decoration:none;font-weight:600;font-size:15px;border-radius:14px;padding:15px 18px;
+    transition:transform .15s ease, box-shadow .2s ease;}
+  .btn:active{transform:translateY(1px)}
+  .btn-gold{background:linear-gradient(180deg,var(--gold),var(--gold-deep));color:#1a1206;
+    box-shadow:0 10px 26px rgba(232,178,90,.22)}
+  .btn-ghost{background:var(--soft);color:var(--white);border:1px solid var(--line-soft)}
+  .btn svg{width:18px;height:18px}
+
+  /* section heads */
+  section{padding-top:46px}
+  .kicker{font-size:11.5px;letter-spacing:3px;color:var(--gold);font-weight:600;text-transform:uppercase}
+  h2{font-family:"Fraunces",serif;font-weight:500;font-size:27px;line-height:1.15;margin:10px 0 0;letter-spacing:-.3px}
+  .sub{color:var(--cool);font-size:14px;margin:8px 0 0}
+
+  /* pillars */
+  .pillars{margin-top:22px;display:flex;flex-direction:column;gap:12px}
+  .pill{display:flex;gap:14px;align-items:flex-start;background:var(--soft);
+    border:1px solid var(--line-soft);border-radius:16px;padding:15px 16px}
+  .pico{flex:0 0 44px;width:44px;height:44px;border-radius:12px;background:rgba(232,178,90,.10);
+    border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+  .pico svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .pill h3{margin:1px 0 2px;font-size:15.5px;font-weight:600}
+  .pill p{margin:0;font-size:13px;color:var(--cool)}
+
+  /* process timeline */
+  .steps{margin-top:24px;position:relative;padding-left:6px}
+  .step{position:relative;padding:0 0 22px 44px}
+  .step:before{content:"";position:absolute;left:14px;top:30px;bottom:-4px;width:2px;
+    background:linear-gradient(var(--line),rgba(232,178,90,.05))}
+  .step:last-child{padding-bottom:0}
+  .step:last-child:before{display:none}
+  .num{position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;
+    border:1.5px solid var(--gold);color:var(--gold);font-size:12.5px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;background:var(--ink)}
+  .step h3{margin:3px 0 3px;font-size:15.5px;font-weight:600}
+  .step p{margin:0;font-size:13px;color:var(--cool)}
+
+  /* results / system readout */
+  .readout{margin-top:24px;background:
+      linear-gradient(180deg, rgba(232,178,90,.07), rgba(255,255,255,.02));
+    border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 20px;
+    box-shadow:0 18px 40px rgba(0,0,0,.35)}
+  .ro-head{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding-bottom:14px;margin-bottom:16px;border-bottom:1px dashed var(--line)}
+  .ro-head .who{display:flex;align-items:center;gap:10px}
+  .dotlive{width:8px;height:8px;border-radius:50%;background:#46d39a;box-shadow:0 0 0 4px rgba(70,211,154,.18)}
+  .ro-head b{font-size:13.5px;font-weight:600}
+  .ro-head small{display:block;color:var(--cool);font-size:11px}
+  .tagpill{font-size:10.5px;letter-spacing:1.5px;color:var(--gold);border:1px solid var(--line);
+    border-radius:20px;padding:4px 10px;font-weight:600}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .stat{background:var(--soft);border:1px solid var(--line-soft);border-radius:14px;padding:13px 14px}
+  .stat .v{font-family:"Fraunces",serif;font-weight:600;font-size:25px;color:var(--gold);line-height:1}
+  .stat .l{font-size:11.5px;color:var(--warm);margin-top:6px;letter-spacing:.2px}
+  .prog{margin-top:16px}
+  .prog .ph{font-size:11.5px;letter-spacing:2px;color:var(--cool);text-transform:uppercase;margin-bottom:10px}
+  .bar{margin-bottom:11px}
+  .bar .bl{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px}
+  .bar .bl span:last-child{color:var(--gold);font-weight:600}
+  .track{height:7px;border-radius:6px;background:rgba(255,255,255,.07);overflow:hidden}
+  .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--gold-deep),var(--gold));width:0;
+    transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+  .priv{font-size:11px;color:var(--cool);margin-top:14px;font-style:italic}
+
+  /* plans */
+  .plans{margin-top:22px;display:flex;flex-direction:column;gap:14px}
+  .plan{background:var(--soft);border:1px solid var(--line-soft);border-radius:18px;padding:18px}
+  .plan.feature{border:1.5px solid var(--gold);background:
+      linear-gradient(180deg,rgba(232,178,90,.10),rgba(255,255,255,.02))}
+  .plan .ptop{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .plan h3{margin:0;font-size:18px;font-weight:600}
+  .plan .ribbon{font-size:10.5px;letter-spacing:1.5px;font-weight:700;color:#1a1206;
+    background:linear-gradient(180deg,var(--gold),var(--gold-deep));padding:4px 10px;border-radius:20px}
+  .plan .pwhat{color:var(--cool);font-size:13px;margin:8px 0 0}
+  .plist{list-style:none;margin:13px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .plist li{display:flex;gap:9px;font-size:13.5px;color:#dfe6ef}
+  .plist li svg{flex:0 0 16px;width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;margin-top:3px}
+  .plan .plink{margin-top:15px;display:inline-flex;align-items:center;gap:7px;color:var(--gold);
+    text-decoration:none;font-weight:600;font-size:13.5px}
+
+  /* final cta */
+  .final{margin-top:48px;text-align:center;background:
+      radial-gradient(80% 100% at 50% 0%, rgba(232,178,90,.14), transparent 70%);
+    border:1px solid var(--line);border-radius:24px;padding:34px 22px}
+  .final h2{font-size:26px}
+  .final p{color:var(--warm);font-size:14px;margin:10px 0 22px}
+  .final-cta{display:flex;flex-direction:column;gap:11px}
+
+  footer{margin-top:40px;padding-top:22px;border-top:1px solid var(--line-soft);
+    color:var(--cool);font-size:12px;text-align:center}
+  footer a{color:var(--warm);text-decoration:none}
+  footer .fcref{color:var(--gold);font-weight:600;margin-bottom:4px}
+
+  /* goals */
+  .goals{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
+  .goals .g{display:flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--line-soft);
+    border-radius:30px;padding:9px 15px;font-size:13.5px;color:#e6ebf2}
+  .goals .g svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;flex:0 0 15px}
+  /* manifesto */
+  .manifesto{margin-top:34px;padding:24px 22px;border-left:3px solid var(--gold);
+    background:linear-gradient(90deg,rgba(232,178,90,.08),rgba(255,255,255,.01));border-radius:0 16px 16px 0}
+  .manifesto .mq{font-family:"Fraunces",serif;font-weight:500;font-style:italic;font-size:22px;
+    line-height:1.42;color:#EAF0F6;margin:0}
+  .manifesto .mby{margin:13px 0 0;font-size:13px;color:var(--warm);font-weight:500;letter-spacing:.2px}
+  /* system showcase */
+  .sysgrid{margin-top:22px;display:flex;flex-direction:column;gap:16px}
+  .screen{background:var(--panel);border:1px solid var(--line-soft);border-radius:18px;padding:16px 16px 17px}
+  .screen .shead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}
+  .stitle{font-size:14px;font-weight:600;display:flex;align-items:center;gap:9px}
+  .stitle .dot{width:9px;height:9px;border-radius:50%;background:var(--gold)}
+  .stag{font-size:10px;letter-spacing:1.4px;color:var(--gold);border:1px solid var(--line);border-radius:20px;padding:3px 9px;font-weight:600;white-space:nowrap}
+  .greet{font-size:13px;color:var(--warm);margin-bottom:12px}
+  .greet b{color:var(--white);font-weight:600}
+  .ppills{display:flex;gap:9px;margin-bottom:12px}
+  .ppills .pp{flex:1;background:var(--soft);border:1px solid var(--line-soft);border-radius:12px;padding:9px 11px}
+  .ppills .pp b{display:block;color:var(--gold);font-size:16px;font-weight:600;font-family:"Fraunces",serif}
+  .ppills .pp span{font-size:10.5px;color:var(--cool)}
+  .next{background:rgba(232,178,90,.07);border:1px solid var(--line);border-radius:12px;padding:11px 12px;margin-bottom:14px}
+  .next small{display:block;font-size:10px;letter-spacing:1.5px;color:var(--cool);text-transform:uppercase}
+  .next b{font-size:13.5px;font-weight:600}
+  .cl{font-size:10.5px;color:var(--cool);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+  .cyclebars{display:flex;align-items:flex-end;gap:6px;height:58px}
+  .cyclebars .cb{flex:1;border-radius:5px 5px 2px 2px;opacity:.92}
+  .cyclelabs{display:flex;gap:6px;margin-top:6px}
+  .cyclelabs span{flex:1;text-align:center;font-size:9.5px;color:var(--cool)}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .legend i{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;color:var(--warm);font-style:normal}
+  .legend i b{width:9px;height:9px;border-radius:3px;display:inline-block}
+  .bio{display:flex;flex-direction:column;gap:9px}
+  .bio .row{display:flex;align-items:center;gap:10px}
+  .bio .lbl{width:104px;font-size:12px;color:var(--warm)}
+  .bio .tk{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:6px;overflow:hidden}
+  .bio .tk i{display:block;height:100%;background:linear-gradient(90deg,var(--gold-deep),var(--gold));border-radius:6px}
+  .bio .val{width:40px;text-align:right;font-size:11.5px;color:var(--gold);font-weight:600}
+  .mini3{display:flex;gap:8px}
+  .mini3 .m{flex:1;background:var(--soft);border:1px solid var(--line-soft);border-radius:12px;padding:11px 8px;text-align:center}
+  .mini3 .m b{display:block;font-family:"Fraunces",serif;color:var(--gold);font-size:19px;font-weight:600;line-height:1}
+  .mini3 .m span{font-size:10px;color:var(--cool)}
+  .okline{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;color:#bfe9d4}
+  .okline svg{width:16px;height:16px;stroke:#46d39a;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;flex:0 0 16px}
+  .sublabel{font-size:11px;color:var(--cool);margin:13px 0 9px;letter-spacing:.2px}
+  .rtiles{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .rtiles .rt{background:var(--soft);border:1px solid var(--line-soft);border-radius:12px;padding:11px 12px}
+  .rtiles .rt b{font-family:"Fraunces",serif;color:var(--gold);font-size:20px;font-weight:600;line-height:1}
+  .rtiles .rt span{display:block;font-size:10.5px;color:var(--cool);margin-top:5px}
+  .rprow{display:flex;gap:14px;align-items:center;margin-top:14px}
+  .rprow .rbars{display:flex;align-items:flex-end;gap:5px;height:50px;flex:1}
+  .rprow .rbars i{flex:1;background:linear-gradient(180deg,var(--gold),var(--gold-deep));border-radius:4px 4px 1px 1px}
+  .radar{flex:0 0 92px;width:92px;height:92px}
+  .cap{font-size:11px;color:var(--cool);margin-top:13px;font-style:italic}
+  @media (prefers-reduced-motion:reduce){.fill{transition:none}}
+  @media (min-width:481px){.wrap{border-left:1px solid rgba(255,255,255,.05);border-right:1px solid rgba(255,255,255,.05)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topgold"></div>
+
+  <div class="brand">
+    <div class="mono">DP</div>
+    <div>
+      <b>Daniel Policarpo</b>
+      <span>Personal Trainer · CREF 055469-G/MG</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow">Saúde · estética · performance</div>
+    <h1>Treino é <em>saúde</em> —<br>corpo e mente.</h1>
+    <p class="lead">Acredito no treino como uma ferramenta poderosa de saúde física e mental — e o caminho para o seu objetivo, seja ele estética, performance, emagrecimento ou bem-estar. O que me move é ver a sua evolução real.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="https://calendar.app.google/oHpxi6aZ1k64TNoL8" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1206" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="3"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>
+        Agendar avaliação
+      </a>
+      <a class="btn btn-ghost" href="https://wa.me/5533984500000" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F4F7FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3.5 20.5l1.6-4.8A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <!-- MANIFESTO -->
+  <div class="manifesto">
+    <p class="mq">“Seja qual for o seu objetivo — estética, performance ou saúde — o que me move é ver você evoluir, no treino e na vida. Com método.”</p>
+    <p class="mby">— Daniel Policarpo, Personal Trainer</p>
+  </div>
+
+  <!-- OBJETIVOS -->
+  <section>
+    <div class="kicker">Para quem é</div>
+    <h2>Para o seu objetivo</h2>
+    <p class="sub">Seja qual for a meta, o método se adapta a você.</p>
+    <div class="goals">
+      <span class="g"><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Emagrecimento e definição</span>
+      <span class="g"><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Hipertrofia e estética</span>
+      <span class="g"><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Performance e atletas</span>
+      <span class="g"><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Saúde e longevidade</span>
+      <span class="g"><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Bem-estar mental</span>
+    </div>
+  </section>
+
+  <!-- MÉTODO -->
+  <section>
+    <div class="kicker">O método</div>
+    <h2>Três pilares, um resultado</h2>
+    <p class="sub">O que sustenta cada plano de acompanhamento.</p>
+    <div class="pillars">
+      <div class="pill">
+        <div class="pico"><svg viewBox="0 0 24 24"><path d="M3 19H7.5V14.5H12V10H16.5V5.5H21"/></svg></div>
+        <div><h3>Periodização científica</h3><p>O treino muda em fases — adaptação, força, hipertrofia — para você não estagnar.</p></div>
+      </div>
+      <div class="pill">
+        <div class="pico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="12" cy="12" r="1" fill="#E8B25A" stroke="none"/></svg></div>
+        <div><h3>Especificidade total</h3><p>Programa montado para a sua individualidade: objetivo, rotina e histórico de dores.</p></div>
+      </div>
+      <div class="pill">
+        <div class="pico"><svg viewBox="0 0 24 24"><path d="M3 18 9 12 13 15 20 6"/><path d="M14.2 6.6 20 6 19.3 11.8"/></svg></div>
+        <div><h3>Monitoramento da evolução</h3><p>Volume, carga, recuperação e bem-estar registrados a cada treino, em números.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section>
+    <div class="kicker">Como funciona</div>
+    <h2>O seu dia a dia, passo a passo</h2>
+    <p class="sub">Da prontidão do dia até o relatório de evolução.</p>
+    <div class="steps">
+      <div class="step"><div class="num">01</div><h3>Check-in pré-treino</h3><p>Antes de treinar, você registra sono, recuperação, estresse, dor e motivação.</p></div>
+      <div class="step"><div class="num">02</div><h3>Treino guiado no app</h3><p>Séries, cargas, vídeo de execução e cronômetro de descanso na palma da mão.</p></div>
+      <div class="step"><div class="num">03</div><h3>Registro de cada série</h3><p>Você marca a percepção de esforço (PSE) e as repetições em reserva (RIR) direto no celular.</p></div>
+      <div class="step"><div class="num">04</div><h3>Ajuste de carga</h3><p>Eu recalibro o próximo treino com base nos seus números — nada fica no automático.</p></div>
+      <div class="step"><div class="num">05</div><h3>Relatório de evolução</h3><p>Volume, densidade, gasto calórico e radar de bem-estar para você ver o progresso.</p></div>
+    </div>
+  </section>
+
+  <!-- SISTEMA POR DENTRO -->
+  <section>
+    <div class="kicker">O sistema por dentro</div>
+    <h2>O Personal PRO funcionando</h2>
+    <p class="sub">As mesmas telas que o seu acompanhamento usa todos os dias.</p>
+
+    <div class="sysgrid">
+
+      <!-- portal do aluno -->
+      <div class="screen">
+        <div class="shead"><div class="stitle"><span class="dot"></span>Portal do aluno</div><span class="stag">APP</span></div>
+        <div class="greet">Olá, <b>Marina</b> 👋 · último treino há 3 dias</div>
+        <div class="ppills">
+          <div class="pp"><b>5</b><span>sessões realizadas</span></div>
+          <div class="pp"><b>Em dia</b><span>mensalidade</span></div>
+        </div>
+        <div class="next"><small>Próxima sessão</small><b>Terça, 23/06 · 06:00 · Push/Pull</b></div>
+        <div class="cl">Macrociclo · hipertrofia</div>
+        <div class="cyclebars">
+          <div class="cb" style="height:34%;background:#46d39a"></div>
+          <div class="cb" style="height:46%;background:#46d39a"></div>
+          <div class="cb" style="height:60%;background:#E8C45A"></div>
+          <div class="cb" style="height:72%;background:#E89A4A"></div>
+          <div class="cb" style="height:88%;background:#E0604A"></div>
+          <div class="cb" style="height:40%;background:#6AA0D0"></div>
+        </div>
+        <div class="cyclelabs"><span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>S5</span><span>S6</span></div>
+      </div>
+
+      <!-- check-in / check-out -->
+      <div class="screen">
+        <div class="shead"><div class="stitle"><span class="dot"></span>Check-in &amp; check-out</div><span class="stag">DIÁRIO</span></div>
+        <div class="sublabel">Antes de treinar — prontidão do dia</div>
+        <div class="bio">
+          <div class="row"><div class="lbl">Sono</div><div class="tk"><i style="width:60%"></i></div><div class="val">3/5</div></div>
+          <div class="row"><div class="lbl">Recuperação</div><div class="tk"><i style="width:50%"></i></div><div class="val">5/10</div></div>
+          <div class="row"><div class="lbl">Estresse</div><div class="tk"><i style="width:40%"></i></div><div class="val">4/10</div></div>
+          <div class="row"><div class="lbl">Dor</div><div class="tk"><i style="width:40%"></i></div><div class="val">2/5</div></div>
+          <div class="row"><div class="lbl">Motivação</div><div class="tk"><i style="width:60%"></i></div><div class="val">3/5</div></div>
+        </div>
+        <div class="sublabel">Depois de treinar — esforço da sessão</div>
+        <div class="mini3">
+          <div class="m"><b>5/10</b><span>PSE</span></div>
+          <div class="m"><b>3.1</b><span>RIR médio</span></div>
+          <div class="m"><b>41 min</b><span>duração</span></div>
+        </div>
+        <div class="okline"><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Tudo OK · recomendação: treino normal</div>
+      </div>
+
+      <!-- periodização -->
+      <div class="screen">
+        <div class="shead"><div class="stitle"><span class="dot"></span>Periodização do treino</div><span class="stag">8 SEMANAS</span></div>
+        <div class="cl">Intensidade ao longo do ciclo</div>
+        <div class="cyclebars">
+          <div class="cb" style="height:30%;background:#46d39a"></div>
+          <div class="cb" style="height:40%;background:#46d39a"></div>
+          <div class="cb" style="height:54%;background:#E8C45A"></div>
+          <div class="cb" style="height:64%;background:#E8C45A"></div>
+          <div class="cb" style="height:78%;background:#E89A4A"></div>
+          <div class="cb" style="height:90%;background:#E0604A"></div>
+          <div class="cb" style="height:96%;background:#E0604A"></div>
+          <div class="cb" style="height:44%;background:#6AA0D0"></div>
+        </div>
+        <div class="cyclelabs"><span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>S5</span><span>S6</span><span>S7</span><span>S8</span></div>
+        <div class="legend">
+          <i><b style="background:#46d39a"></b>Leve</i>
+          <i><b style="background:#E8C45A"></b>Moderada</i>
+          <i><b style="background:#E89A4A"></b>Alta</i>
+          <i><b style="background:#E0604A"></b>Muito alta</i>
+          <i><b style="background:#6AA0D0"></b>Deload</i>
+        </div>
+      </div>
+
+      <!-- relatório de ciclo -->
+      <div class="screen">
+        <div class="shead"><div class="stitle"><span class="dot"></span>Relatório do ciclo</div><span class="stag">A CADA CICLO</span></div>
+        <div class="rtiles">
+          <div class="rt"><b>30.918 kg</b><span>Volume total</span></div>
+          <div class="rt"><b>5</b><span>Sessões realizadas</span></div>
+          <div class="rt"><b>4,0</b><span>PSE média</span></div>
+          <div class="rt"><b>53 min</b><span>Duração média</span></div>
+        </div>
+        <div class="rprow">
+          <div class="rbars"><i style="height:42%"></i><i style="height:58%"></i><i style="height:74%"></i><i style="height:92%"></i></div>
+          <svg class="radar" viewBox="0 0 100 100">
+            <polygon points="50,10 88,37.6 73.5,82.4 26.5,82.4 12,37.6" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+            <polygon points="50,30 69,43.8 61.8,66.2 38.2,66.2 31,43.8" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <polygon points="50,14 74.7,42 67.6,74.3 33.5,72.7 19.6,40.1" fill="rgba(232,178,90,.20)" stroke="#E8B25A" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <div class="cap">Gerado ao fim de cada ciclo — com gráficos de carga, bem-estar e evolução.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section>
+    <div class="kicker">Resultados reais</div>
+    <h2>O sistema em funcionamento</h2>
+    <p class="sub">Leitura real de uma aluna em acompanhamento.</p>
+
+    <div class="readout">
+      <div class="ro-head">
+        <div class="who">
+          <span class="dotlive"></span>
+          <div><b>Marina C.</b><small>Hipertrofia · ciclo inicial</small></div>
+        </div>
+        <span class="tagpill">PERSONAL PRO</span>
+      </div>
+
+      <div class="grid">
+        <div class="stat"><div class="v" data-count="30918" data-suffix=" kg">0 kg</div><div class="l">Volume movimentado em 5 sessões</div></div>
+        <div class="stat"><div class="v" data-count="200" data-prefix="+" data-suffix="%">0%</div><div class="l">Carga na mesa flexora (9 → 27 kg)</div></div>
+        <div class="stat"><div class="v" data-count="40" data-decimals="1">0</div><div class="l">PSE média — esforço controlado</div></div>
+        <div class="stat"><div class="v" data-count="6184" data-suffix=" kg">0 kg</div><div class="l">Média de carga por sessão</div></div>
+      </div>
+
+      <div class="prog">
+        <div class="ph">Progressão de carga por exercício</div>
+        <div class="bar"><div class="bl"><span>Mesa flexora</span><span>+200%</span></div><div class="track"><div class="fill" data-w="100"></div></div></div>
+        <div class="bar"><div class="bl"><span>Agachamento Smith</span><span>+25%</span></div><div class="track"><div class="fill" data-w="42"></div></div></div>
+        <div class="bar"><div class="bl"><span>Elevação pélvica</span><span>+22%</span></div><div class="track"><div class="fill" data-w="38"></div></div></div>
+      </div>
+
+      <p class="priv">Dados reais de aluna em acompanhamento. Nome alterado para preservar a privacidade.</p>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section>
+    <div class="kicker">Os planos</div>
+    <h2>Escolha o seu acompanhamento</h2>
+    <p class="sub">Todos com periodização, ajustes de carga e monitoramento da evolução.</p>
+
+    <div class="plans">
+      <div class="plan">
+        <div class="ptop"><h3>Avaliação inicial</h3></div>
+        <p class="pwhat">A porta de entrada. O diagnóstico que define todo o seu ciclo.</p>
+        <ul class="plist">
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Anamnese, avaliação postural, 1RM e VO2</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Zonas de carga e periodização definidas</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Base de evolução para medir tudo</li>
+        </ul>
+        <a class="plink" href="https://calendar.app.google/oHpxi6aZ1k64TNoL8" target="_blank" rel="noopener">Agendar avaliação →</a>
+        <a class="plink" href="https://personal-pro-v3.vercel.app/#/form/anamnese?trainer=b9080f8d-3bba-41a1-9268-c7bc25f6058c" target="_blank" rel="noopener" style="display:flex;margin-top:11px">Preencher anamnese online →</a>
+      </div>
+
+      <div class="plan">
+        <div class="ptop"><h3>Premium · Online</h3></div>
+        <p class="pwhat">O monitoramento de um personal, com a liberdade do online.</p>
+        <ul class="plist">
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Periodização e ajustes de carga semanais</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Monitoramento da evolução em números</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Aplicativo exclusivo: programa, vídeos e check-in</li>
+        </ul>
+        <a class="plink" href="https://wa.me/5533984500000" target="_blank" rel="noopener">Quero o Premium →</a>
+      </div>
+
+      <div class="plan">
+        <div class="ptop"><h3>Presencial · VIP</h3><span class="ribbon">EXCLUSIVO</span></div>
+        <p class="pwhat">A experiência mais completa, lado a lado em cada treino.</p>
+        <ul class="plist">
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Tudo do Premium + presença em cada treino</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Correção tátil e verbal ao vivo</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></svg>Carga calibrada na hora, a cada série</li>
+        </ul>
+        <a class="plink" href="https://wa.me/5533984500000" target="_blank" rel="noopener">Quero o VIP →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <div class="final">
+    <h2>Vamos conversar?</h2>
+    <p>Me conta seu objetivo e em que formato você quer treinar. O resto a gente constrói com método.</p>
+    <div class="final-cta">
+      <a class="btn btn-gold" href="https://wa.me/5533984500000" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a1206" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3.5 20.5l1.6-4.8A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="https://calendar.app.google/oHpxi6aZ1k64TNoL8" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F4F7FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="3"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>
+        Agendar avaliação
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="fcref">CREF 055469-G/MG</div>
+    <div>Daniel Policarpo · Personal Trainer · Manhuaçu/MG</div>
+    <div style="margin-top:8px">
+      <a href="https://instagram.com/dlpolicarpo" target="_blank" rel="noopener">@dlpolicarpo</a>
+      &nbsp;·&nbsp;
+      <a href="https://wa.me/5533984500000" target="_blank" rel="noopener">WhatsApp (33) 9 8450-0000</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(n, decimals){
+    if(decimals){ return (n/Math.pow(10,decimals)).toFixed(decimals).replace('.', ','); }
+    return n.toLocaleString('pt-BR');
+  }
+  function animateCount(el){
+    var target = parseInt(el.getAttribute('data-count'),10);
+    var dec = parseInt(el.getAttribute('data-decimals')||'0',10);
+    var pre = el.getAttribute('data-prefix')||'';
+    var suf = el.getAttribute('data-suffix')||'';
+    if(reduce){ el.textContent = pre+fmt(target,dec)+suf; return; }
+    var dur=1100, start=null;
+    function tick(ts){
+      if(!start) start=ts;
+      var p=Math.min((ts-start)/dur,1);
+      var e=1-Math.pow(1-p,3);
+      el.textContent = pre+fmt(Math.round(target*e),dec)+suf;
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  function reveal(t){
+    if(t.dataset.done) return; t.dataset.done='1';
+    if(t.hasAttribute('data-count')) animateCount(t);
+    if(t.classList.contains('fill')) t.style.width = t.getAttribute('data-w')+'%';
+  }
+  var nodes = document.querySelectorAll('[data-count], .fill');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ reveal(en.target); io.unobserve(en.target);} });
+    },{threshold:.35});
+    nodes.forEach(function(el){ io.observe(el); });
+    // safety net: fill anything still untouched after 3s (e.g. observer never fires)
+    setTimeout(function(){ nodes.forEach(reveal); }, 3000);
+  } else {
+    nodes.forEach(reveal);
+  }
+})();
+</script>
+</body>
+</html>
